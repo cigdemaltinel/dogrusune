@@ -3,85 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
 <title>Doğrusu Ne?</title>
-<meta property="og:title" content="Doğrusu Ne? - Davet">
-<meta property="og:description" content="Doğrusunu unutturan yanlışlar oyununa davetlisin!">
-<style>
-  :root { --bg: #F4F2FF; --ink: #1F1B3A; --muted: #8A86A8; --primary: #5B4BDB; --card: #fff; }
-  * { box-sizing: border-box; }
-  body { margin: 0; min-height: 100vh; display: flex; align-items: center; justify-content: center;
-         background: var(--bg); color: var(--ink); font-family: -apple-system, system-ui, sans-serif; text-align: center; }
-  main { width: 100%; max-width: 420px; padding: 32px 16px; }
-  h1 { color: var(--primary); font-size: 44px; margin: 0 0 4px; }
-  .sub { color: var(--muted); margin: 0 0 28px; }
-  .card { background: var(--card); border-radius: 22px; padding: 22px; margin-bottom: 24px; }
-  .label { color: var(--muted); font-size: 14px; font-weight: 700; letter-spacing: 1px; }
-  .code { color: var(--primary); font-size: 64px; font-weight: 800; letter-spacing: 6px; }
-  .title { font-size: 22px; font-weight: 700; }
-  a.button { display: block; padding: 18px; border-radius: 18px; margin-bottom: 12px; font-size: 19px; font-weight: 700;
-             text-decoration: none; background: var(--card); color: var(--primary); }
-  a.button.primary { background: var(--primary); color: #fff; }
-  .hint { color: var(--muted); font-size: 14px; }
-  [hidden] { display: none !important; }
-</style>
+<script>location.replace("https://makaresoft.com/d/" + location.search);</script>
 </head>
 <body>
-<main>
-  <h1>Doğrusu Ne?</h1>
-  <p class="sub">Doğrusunu unutturan yanlışlar</p>
-
-  <div class="card" id="room" hidden>
-    <div class="label">ODA KODU</div>
-    <div class="code" id="roomCode"></div>
-    <div>Aynı anda yarışmaya davetlisin!</div>
-  </div>
-  <div class="card" id="quiz" hidden>
-    <div class="label">QUİZ</div>
-    <div class="title" id="quizTitle"></div>
-  </div>
-
-  <a class="button primary" id="open" href="#">OYUNDA AÇ</a>
-  <a class="button" id="appStore" hidden>App Store'dan indir</a>
-  <a class="button" id="playStore" href="https://play.google.com/store/apps/details?id=com.cigdemaltinel.dogrusune">Google Play'den indir</a>
-  <p class="hint" id="hint"></p>
-</main>
-<script>
-  // Mağaza sayfası açılınca buraya yazın, ör. "https://apps.apple.com/app/id1234567890"
-  const APP_STORE_URL = "";
-  const PACKAGE = "com.cigdemaltinel.dogrusune";
-
-  const params = new URLSearchParams(location.search);
-  const room = (params.get("oda") || "").replace(/\D/g, "").slice(0, 4);
-  const quiz = params.get("quiz") || "";
-  const path = room ? "oda/" + room : quiz ? "quiz/" + encodeURIComponent(quiz) : "";
-  const android = /android/i.test(navigator.userAgent);
-
-  if (room) {
-    document.getElementById("room").hidden = false;
-    document.getElementById("roomCode").textContent = room;
-    document.getElementById("hint").textContent = "Açılmazsa oyunda AYNI ANDA OYNA > KATIL'a bu kodu yaz.";
-  } else if (quiz) {
-    document.getElementById("quiz").hidden = false;
-    try {
-      const b64 = quiz.slice(quiz.indexOf("DN1-") + 4);
-      const text = new TextDecoder().decode(Uint8Array.from(atob(b64), c => c.charCodeAt(0)));
-      document.getElementById("quizTitle").textContent = text.split("\n")[0];
-    } catch (e) { document.getElementById("quizTitle").textContent = "Arkadaşının hazırladığı quiz"; }
-  }
-
-  // Android: oyun yüklü değilse Chrome kendiliğinden Google Play'e gider.
-  const appUrl = android
-    ? "intent://" + path + "#Intent;scheme=dogrusune;package=" + PACKAGE + ";end"
-    : "dogrusune://" + path;
-  document.getElementById("open").href = appUrl;
-
-  const appStore = document.getElementById("appStore");
-  if (APP_STORE_URL) { appStore.href = APP_STORE_URL; appStore.hidden = false; }
-  document.getElementById("playStore").hidden = !android;
-  if (!APP_STORE_URL && !android && !document.getElementById("hint").textContent)
-    document.getElementById("hint").textContent = "Oyun yüklü değilse önce App Store'dan indir.";
-
-  if (path && android) location.href = appUrl;
-</script>
+<p>Davet sayfası taşındı: <a href="https://makaresoft.com/d/">makaresoft.com/d</a></p>
 </body>
 </html>
